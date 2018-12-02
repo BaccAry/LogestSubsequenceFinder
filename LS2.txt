@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+public class LS2 {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		String input;
+		while(true) {
+		input = scanner.nextLine();
+		String[] tabS = input.split(" ");
+		int[] numbers = new int[tabS.length];
+		int x = 0;
+		for (String s : tabS) {
+			numbers[x] = Integer.parseInt(s);
+			x++;
+		}
+		
+		int lengthAsc = 1, lengthmaxAsc = 1;
+		int indexAsc = 0;
+		int lengthDesc = 1, lengthmaxDesc = 1;
+		int indexDesc = 0;
+		int sumDesc = 0, sumDescMax = 0;
+		int sumAsc = 0, sumAscMax = 0;
+		int lengthMax = 0;
+		int sumMax = 0;
+		
+		for (int a = 1; a < numbers.length; a++) {
+			if (numbers[a - 1] <= numbers[a]) {
+				lengthAsc++;
+				if (lengthAsc > lengthmaxAsc) {
+					lengthmaxAsc = lengthAsc;
+					indexAsc = a;
+					for (int b = (indexAsc - lengthmaxAsc) + 1; b <= indexAsc; b++) {
+						sumAsc += numbers[b];
+					}
+					sumAscMax = sumAsc;
+					sumAsc = 0;
+				}
+			} else {
+				lengthAsc = 1;
+				sumAsc = 0;
+			}
+			if (numbers[a - 1] >= numbers[a]) {
+				lengthDesc++;
+				if (lengthDesc > lengthmaxDesc) {
+					lengthmaxDesc = lengthDesc;
+					indexDesc = a;
+					for (int b = (indexDesc - lengthmaxDesc) + 1; b <= indexDesc; b++) {
+						sumDesc += numbers[b];
+					}
+					sumDescMax = sumDesc;
+					sumDesc = 0;
+				}
+			} else {
+				lengthDesc = 1;
+				sumDesc = 0;
+			}
+			lengthMax = lengthmaxAsc > lengthmaxDesc ? lengthmaxAsc : lengthmaxDesc;
+			sumMax = lengthmaxAsc > lengthmaxDesc ? sumAscMax : sumDescMax;
+			if(lengthmaxAsc == lengthmaxDesc) {
+				lengthMax = indexAsc > indexDesc ? lengthmaxAsc : lengthmaxDesc;
+				sumMax = indexAsc < indexDesc ? sumAscMax : sumDescMax;
+			}
+		}
+/*		
+		System.out.println("Length of the longest subsequenceAsc: " + lengthmaxAsc);
+		System.out.println("Sum of the longest subsequenceAsc: " + sumAscMax);
+		
+		
+		System.out.println("Length of the longest subsequenceDesc: " + lengthmaxDesc);
+		System.out.println("Sum of the longest subsequenceDesc: " + sumDescMax);
+
+		*/
+		System.out.println("Length of the longest subsequence: " + lengthMax);
+		System.out.println("Sum of the longest subsequence: " + sumMax);
+
+	}
+	}
+
+}
