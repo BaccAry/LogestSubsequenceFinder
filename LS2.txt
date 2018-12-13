@@ -62,15 +62,7 @@ public class LS2 {
 				sumMax = indexAsc < indexDesc ? sumAscMax : sumDescMax;
 			}
 		}
-/*		
-		System.out.println("Length of the longest subsequenceAsc: " + lengthmaxAsc);
-		System.out.println("Sum of the longest subsequenceAsc: " + sumAscMax);
 		
-		
-		System.out.println("Length of the longest subsequenceDesc: " + lengthmaxDesc);
-		System.out.println("Sum of the longest subsequenceDesc: " + sumDescMax);
-
-		*/
 		System.out.println("Length of the longest subsequence: " + lengthMax);
 		System.out.println("Sum of the longest subsequence: " + sumMax);
 
